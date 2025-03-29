@@ -18,6 +18,10 @@ const createPortfolio = async (payload: IPortfolio) => {
       },
       ...othersData,
     },
+    include: {
+      technology: true,
+      functionalities: true,
+    },
   });
 
   return result;
