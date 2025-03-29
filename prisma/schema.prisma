@@ -55,7 +55,7 @@ model Technology {
 model Functionalities {
   id           String     @id @default(uuid())
   name         String
-  portfolios   Portfolios @relation(fields: [portfoliosId], references: [id])
+  portfolio   Portfolios @relation(fields: [portfoliosId], references: [id])
   portfoliosId String
 
   @@map("functionalities")

@@ -25,6 +25,20 @@ router.post(
     return PortfoliosController.createPortfolio(req, res, next);
   },
 );
+router.post(
+  '/updateInfo',
+  FileUploadHelper.upload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    if (req.body?.data) {
+      req.body = JSON?.parse(req.body?.data);
+    }
+
+    if (req.file) {
+      req.body.image = `${config.api_link_Image}/api/v1/portfolio/image/${req.file.filename}`;
+    }
+    return PortfoliosController.createPortfolio(req, res, next);
+  },
+);
 router.get('/image/:fileName', async (req: Request, res: Response) => {
   const filePath = await path.join(
     process.cwd(),
