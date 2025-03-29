@@ -36,7 +36,7 @@ router.post(
     if (req.file) {
       req.body.image = `${config.api_link_Image}/api/v1/portfolio/image/${req.file.filename}`;
     }
-    return PortfoliosController.createPortfolio(req, res, next);
+    return PortfoliosController.updatePortfolioInfo(req, res, next);
   },
 );
 router.get('/image/:fileName', async (req: Request, res: Response) => {
@@ -55,5 +55,22 @@ router.get('/image/:fileName', async (req: Request, res: Response) => {
     res.sendFile(filePath);
   });
 });
+
+router.get('/', PortfoliosController.getAllPortfolio);
+router.get('/single/:id', PortfoliosController.getSinglePortfolio);
+router.post(
+  '/addTechnology/:id',
+  PortfoliosController.addTechnologyToPortfolio,
+);
+router.post(
+  '/addFunctionality/:id',
+  PortfoliosController.addFunctionalityToPortfolio,
+);
+router.delete('/deleteTechnology/:id', PortfoliosController.deleteTechnology);
+router.delete(
+  '/deleteFunctionality/:id',
+  PortfoliosController.deleteFunctionality,
+);
+router.delete('/delete/:id', PortfoliosController.deleteFunctionality);
 
 export const PortfoliosRoutes = router;
