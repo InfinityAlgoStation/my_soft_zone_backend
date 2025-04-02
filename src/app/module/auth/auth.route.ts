@@ -7,11 +7,7 @@ import { AuthValidation } from './auth.validation';
 
 const router = express.Router();
 
-router.post(
-  '/register',
-  validateRequest(AuthValidation.makeUserZodSchema),
-  AuthController.userRegistration,
-);
+router.post('/register', AuthController.userRegistration);
 
 router.post(
   '/login',
@@ -21,7 +17,7 @@ router.post(
 
 router.post(
   '/changePassword',
-  auth(ENUM_USER_ROLE.OWNER, ENUM_USER_ROLE.TENANT),
+  auth(ENUM_USER_ROLE.ADMIN),
   validateRequest(AuthValidation.changePasswordZodSchema),
   AuthController.changePassword,
 );

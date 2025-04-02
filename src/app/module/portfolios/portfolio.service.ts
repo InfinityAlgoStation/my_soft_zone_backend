@@ -183,10 +183,20 @@ const deletePortfolio = async (id: string) => {
       );
     }
   };
-  if (isPortfolioExist.image) {
-    deletePhoto(isPortfolioExist.image);
-  }
-  const result = await prisma.portfolios.delete({ where: { id: id } });
+
+  const result = await prisma.$transaction(async prisma => {
+    if (isPortfolioExist.image) {
+      deletePhoto(isPortfolioExist.image);
+    }
+    await prisma.technology.deleteMany({
+      where: { portfoliosId: id },
+    });
+    await prisma.functionalities.deleteMany({
+      where: { portfoliosId: id },
+    });
+    const result = await prisma.portfolios.delete({ where: { id: id } });
+    return result;
+  });
   return result;
 };
 

@@ -71,6 +71,6 @@ router.delete(
   '/deleteFunctionality/:id',
   PortfoliosController.deleteFunctionality,
 );
-router.delete('/delete/:id', PortfoliosController.deleteFunctionality);
+router.delete('/delete/:id', PortfoliosController.deletePortfolio);
 
 export const PortfoliosRoutes = router;
