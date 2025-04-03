@@ -6,6 +6,6 @@ const router = express.Router();
 router.post('/submit', FeedbackController.createFeedback);
 
 router.get('/', FeedbackController.getAllFeedback);
-router.get('/delete/:id', FeedbackController.deleteFeedBack);
+router.delete('/delete/:id', FeedbackController.deleteFeedBack);
 
 export const FeedbackRoutes = router;
