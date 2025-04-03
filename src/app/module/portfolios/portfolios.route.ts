@@ -26,7 +26,7 @@ router.post(
   },
 );
 router.post(
-  '/updateInfo',
+  '/updateInfo/:id',
   FileUploadHelper.upload.single('file'),
   (req: Request, res: Response, next: NextFunction) => {
     if (req.body?.data) {

@@ -118,7 +118,7 @@ const updatePortfolioInfo = async (
     // Delete the image file from the server
     const filePath = path.join(
       process.cwd(),
-      'uploads/userPhoto',
+      'uploads',
       path.basename(photoLink),
     );
     if (fs.existsSync(filePath)) {
@@ -164,7 +164,7 @@ const deletePortfolio = async (id: string) => {
     // Delete the image file from the server
     const filePath = path.join(
       process.cwd(),
-      'uploads/userPhoto',
+      'uploads',
       path.basename(photoLink),
     );
     if (fs.existsSync(filePath)) {
