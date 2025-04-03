@@ -1,20 +1,21 @@
-import { createLogger, format, transports } from 'winston';
-const { combine, timestamp, label, printf } = format;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.logger = exports.errorLogger = void 0;
+const winston_1 = require("winston");
+const { combine, timestamp, label, printf } = winston_1.format;
 // custom log formate
-
 const myFormat = printf(({ level, message, label, timestamp }) => {
-  const date = new Date(timestamp as string);
-  const hour = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
-  return `${date.toDateString()} ${hour}:${minutes}:${seconds} } [${label}] ${level}: ${message}`;
+    const date = new Date(timestamp);
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    return `${date.toDateString()} ${hour}:${minutes}:${seconds} } [${label}] ${level}: ${message}`;
 });
-
-const logger = createLogger({
-  level: 'info',
-  format: combine(label({ label: 'UMP' }), timestamp(), myFormat),
-  // save log file based on condition
-  transports:
+const logger = (0, winston_1.createLogger)({
+    level: 'info',
+    format: combine(label({ label: 'UMP' }), timestamp(), myFormat),
+    // save log file based on condition
+    transports: 
     // config.env === 'production'
     //   ? [
     //       new DailyRotateFile({
@@ -32,13 +33,13 @@ const logger = createLogger({
     //       }),
     //     ]
     //   :
-    [new transports.Console()],
+    [new winston_1.transports.Console()],
 });
-
-const errorLogger = createLogger({
-  level: 'error',
-  format: combine(label({ label: 'UMP' }), timestamp(), myFormat),
-  transports:
+exports.logger = logger;
+const errorLogger = (0, winston_1.createLogger)({
+    level: 'error',
+    format: combine(label({ label: 'UMP' }), timestamp(), myFormat),
+    transports: 
     // config.env === 'production'
     //   ? [
     //       new DailyRotateFile({
@@ -56,7 +57,6 @@ const errorLogger = createLogger({
     //       }),
     //     ]
     //   :
-    [new transports.Console()],
+    [new winston_1.transports.Console()],
 });
-
-export { errorLogger, logger };
+exports.errorLogger = errorLogger;
