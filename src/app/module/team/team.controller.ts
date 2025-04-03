@@ -27,8 +27,20 @@ const deleteMember = catchAsync(
     });
   },
 );
+const getAllMember = catchAsync(
+  async (req: Request, res: Response, ) => {
+    const result = await TeamServices.getAllMember();
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Member retrieve successfully',
+      data: result,
+    });
+  },
+);
 
 export const TeamController = {
   createMember,
   deleteMember,
+  getAllMember,
 };

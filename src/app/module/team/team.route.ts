@@ -44,5 +44,5 @@ router.get('/image/:fileName', async (req: Request, res: Response) => {
   });
 });
 router.delete('/delete/:id', TeamController.deleteMember);
-
+router.get('/', TeamController.getAllMember);
 export const TeamRoutes = router;
