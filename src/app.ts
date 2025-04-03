@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 
 const app: Application = express();
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:3000'];
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:3000',"https://mysoftzone.com","https://www.mysoftzone.com"];
 
 app.use(
   cors({
