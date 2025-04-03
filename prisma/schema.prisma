@@ -36,9 +36,10 @@ model Feedback {
 }
 
 model TeamMembers {
-  id   String @id @default(uuid())
-  name String
-  role String
+  id    String  @id @default(uuid())
+  name  String
+  role  String
+  image String?
 
   @@map("team_members")
 }
@@ -55,7 +56,7 @@ model Technology {
 model Functionalities {
   id           String     @id @default(uuid())
   name         String
-  portfolio   Portfolios @relation(fields: [portfoliosId], references: [id])
+  portfolio    Portfolios @relation(fields: [portfoliosId], references: [id])
   portfoliosId String
 
   @@map("functionalities")
