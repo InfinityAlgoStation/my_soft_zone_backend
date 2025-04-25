@@ -38,9 +38,21 @@ const getAllMember = catchAsync(
     });
   },
 );
+const updateTeam = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const result = await TeamServices.updateTeam(req.params.id, req.body);
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Team update successfully',
+      data: result,
+    });
+  },
+);
 
 export const TeamController = {
   createMember,
   deleteMember,
   getAllMember,
+  updateTeam,
 };
