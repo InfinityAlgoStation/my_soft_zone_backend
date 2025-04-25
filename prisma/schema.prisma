@@ -36,10 +36,11 @@ model Feedback {
 }
 
 model TeamMembers {
-  id    String  @id @default(uuid())
-  name  String
-  role  String
-  image String?
+  id        String   @id @default(uuid())
+  name      String
+  role      String
+  image     String?
+  createdAt DateTime @default(now())
 
   @@map("team_members")
 }
