@@ -26,7 +26,7 @@ router.post(
     return TeamController.createMember(req, res, next);
   },
 );
-router.post(
+router.patch(
   '/updateInfo/:id',
   FileUploadHelper.upload.single('file'),
   (req: Request, res: Response, next: NextFunction) => {
