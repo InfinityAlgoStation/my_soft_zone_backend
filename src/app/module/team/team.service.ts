@@ -52,15 +52,15 @@ const deleteMember = async (id: string) => {
 };
 
 const getAllMember = async () => {
-  const result = await prisma.teamMembers.findMany();
+  const result = await prisma.teamMembers.findMany({
+    orderBy: {
+      createdAt: 'asc', // 'asc' for oldest first
+    },
+  });
   return result;
 };
 
-
-const updateTeam = async (
-  id: string,
-  payload:any
-) => {
+const updateTeam = async (id: string, payload: any) => {
   const isPortfolioExist = await prisma.teamMembers.findUnique({
     where: { id: id },
   });
